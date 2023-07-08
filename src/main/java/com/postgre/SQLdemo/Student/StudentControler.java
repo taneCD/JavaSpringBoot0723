@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.util.List;
 
 @RestController
 @RequestMapping(path="api/v1/student")
@@ -17,16 +18,21 @@ public class StudentControler {
         this.studentService = studentService;
     }
 
+//    @GetMapping
+//    public String getStudents() throws IOException {
+//        String str = readText();
+//        String noviString = "<ul>";
+//        for(var el : studentService.getStudents()){
+//            noviString=noviString+"<li>"+ el.getName()+"</li>";
+//
+//        }
+//        noviString = noviString + "</ul>";
+//        str=str.replace("<!--page content-->", noviString);
+//        return str;
+//    }
     @GetMapping
-    public String getStudents() throws IOException {
-        String str = readText();
-        String noviString = "<ul>";
-        for(var el : studentService.getStudents()){
-            noviString=noviString+"<li>"+ el.getName()+"</li>";
-
-        }
-        noviString = noviString + "</ul>";
-        return noviString;
+    public List<Student> getStudents(){
+        return studentService.getStudents();
     }
 
     @PostMapping
